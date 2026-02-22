@@ -10,5 +10,9 @@ const dbPlugin: FastifyPluginAsync = async (
   fastify: FastifyInstance,
   options: FastifyPluginOptions
 ) => {
-    await fastify.register
+  await fastify.register(fastifyPostgres, {
+    connectionString: Bun.env.DB_CONNECTION_URL,
+  });
 };
+
+export default fastifyPlugin(dbPlugin);

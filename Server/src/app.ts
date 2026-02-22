@@ -11,8 +11,8 @@ import {
 import fastifyCors from '@fastify/cors';
 import fastifyFormbody from '@fastify/formbody';
 import fastifyJwt from '@fastify/jwt';
-
 import { authRoutes } from './Routes';
+import { dbPlugin } from './Plugins';
 
 const app: FastifyInstance = fastify().withTypeProvider<ZodTypeProvider>(); // { logger: true }
 
@@ -26,6 +26,7 @@ app.register(fastifyFormbody);
 app.register(fastifyJwt, {
   secret: Bun.env.JWT_SECRET,
 });
+app.register(dbPlugin)
 
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
@@ -35,5 +36,12 @@ app.get('/', (request: FastifyRequest, reply: FastifyReply) => {
 });
 
 app.register(authRoutes, { prefix: '/api/v1/user' });
+
+app.ready((error) => {
+  if(error) {
+    console.error("Plugin loading failed:", error);
+    process.exit(1)
+  }
+})
 
 export { app };

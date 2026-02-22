@@ -8,7 +8,6 @@ const signUp = async (
   try {
     const { first_name, last_name, email, password } = request.body
     console.log(first_name, last_name, email, password);
-    
   } catch (error) {
 
   }
