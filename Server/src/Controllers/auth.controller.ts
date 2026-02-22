@@ -1,8 +1,8 @@
 import { type FastifyRequest, type FastifyReply } from "fastify";
 
-const signUp = (request: FastifyRequest, reply: FastifyReply) => {
+const signUp = async (request: FastifyRequest, reply: FastifyReply) => {
     try {
-        
+        console.log(request.body)
     } catch (error) {
         
     } 

@@ -3,6 +3,7 @@
   "module": "src/index.ts",
   "type": "module",
   "scripts": {
+    "build": "bun build src/index.ts --outdir dist --target bun",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "bun run --env-file .env src/index.ts",
     "dev": "bun --watch --env-file .env src/index.ts"
@@ -17,7 +18,9 @@
   "dependencies": {
     "@fastify/cookie": "^11.0.2",
     "@fastify/cors": "^11.2.0",
+    "@fastify/formbody": "^8.0.2",
     "@fastify/jwt": "^10.0.0",
+    "@fastify/multipart": "^9.4.0",
     "fastify": "^5.7.4",
     "fastify-plugin": "^5.1.0",
     "fastify-type-provider-zod": "^6.1.0",
