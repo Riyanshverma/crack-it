@@ -11,12 +11,15 @@ const authErrorHandler = (
   reply: FastifyReply
 ) => {
   if (error.validation) {
-    reply.status(400).send({
+    return reply.status(400).send({
       statusCode: error.statusCode,
       error: 'Bad Request',
       message: (error.validation as FastifySchemaValidationError[]).map(
         ({ message, instancePath, params }: FastifySchemaValidationError) => ({
-          field: instancePath.length > 1 ? instancePath.substring(1) : params.keys.join(', '),
+          field:
+            instancePath.length > 1
+              ? instancePath.substring(1)
+              : params.keys.join(', '),
           message,
         })
       ),

@@ -18,10 +18,26 @@ const signUp = async (
       email,
       password_hash,
     });
-    console.log("This is the reuslt: ", result);
-    
-  } catch (error) {
-    console.log(error);
+
+    // TODO: Implement JWT
+
+    // TODO: Send Cookie with JWT
+
+    // TODO: Send proper response
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return reply.status(500).send({
+        statusCode: 500,
+        error: 'code' in error ? 'Database Error' : 'Internal Server Error',
+        message: error.message,
+      });
+    }
+
+    return reply.status(500).send({
+      statusCode: 500,
+      error: 'Unknown Error',
+      message: 'An unknown error occurred',
+    });
   }
 };
 

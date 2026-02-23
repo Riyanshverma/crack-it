@@ -10,4 +10,10 @@ interface CreateUserParams extends Database {
   password_hash: string;
 }
 
-export type { CreateUserParams }
+interface CreateUserResult {
+  id: number;
+  full_name: string;
+  email: string;
+}
+
+export type { CreateUserParams, CreateUserResult }
