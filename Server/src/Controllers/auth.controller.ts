@@ -9,29 +9,28 @@ const signUp = async (
 ) => {
   try {
     const { first_name, last_name, email, password } = request.body;
+
+    const password_hash = await hashPassword(password);
+
+    const result = await createUser({
+      db: request.server.pg,
+      full_name: `${first_name} ${last_name}`,
+      email,
+      password_hash,
+    });
+    console.log("This is the reuslt: ", result);
     
-    const hashed_password = await hashPassword(password);
-    
-    const result = await createUser({ full_name: `${first_name} ${last_name}`, email, hashed_password });
   } catch (error) {
-
+    console.log(error);
   }
-}
+};
 
-
-
-
-
-
-
-
-
-const logIn = async (request: FastifyRequest<{ Body: userLogInType }>, reply: FastifyReply) => {
-    try {
-        console.log(request.body);
-        
-    } catch (error) {
-
-    }
-}
-export { signUp, logIn }
+const logIn = async (
+  request: FastifyRequest<{ Body: userLogInType }>,
+  reply: FastifyReply
+) => {
+  try {
+    console.log(request.body);
+  } catch (error) {}
+};
+export { signUp, logIn };

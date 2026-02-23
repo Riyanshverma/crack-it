@@ -1,7 +1,13 @@
-interface CreateUserParams {
+import { type PostgresDb } from "@fastify/postgres";
+
+interface Database {
+  db: PostgresDb;
+}
+
+interface CreateUserParams extends Database {
   full_name: string;
   email: string;
-  hashed_password: string;
+  password_hash: string;
 }
 
 export type { CreateUserParams }
