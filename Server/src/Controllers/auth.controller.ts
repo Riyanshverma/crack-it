@@ -19,11 +19,15 @@ const signUp = async (
       password_hash,
     });
 
-    // TODO: Implement JWT
+    const token = await reply.jwtSign({
+      id: result.id,
+      email: result.email,
+    });
+    
 
     // TODO: Send Cookie with JWT
 
-    // TODO: Send proper response
+    // TODO: Send proper responsex
   } catch (error: unknown) {
     if (error instanceof Error) {
       return reply.status(500).send({

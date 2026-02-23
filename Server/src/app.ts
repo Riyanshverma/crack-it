@@ -1,18 +1,10 @@
-import fastify, {
-  type FastifyInstance,
-  type FastifyRequest,
-  type FastifyReply,
-} from 'fastify';
-import {
-  serializerCompiler,
-  validatorCompiler,
-  type ZodTypeProvider,
-} from 'fastify-type-provider-zod';
+import fastify, { type FastifyInstance, type FastifyRequest, type FastifyReply } from 'fastify';
+import fastifyPlugin from 'fastify-plugin';
+import { serializerCompiler, validatorCompiler, type ZodTypeProvider } from 'fastify-type-provider-zod';
 import fastifyCors from '@fastify/cors';
 import fastifyFormbody from '@fastify/formbody';
-import fastifyJwt from '@fastify/jwt';
 import { authRoutes } from './Routes';
-import { dbPlugin } from './Plugins';
+import { dbPlugin, jwtPlugin } from './Plugins';
 
 const app: FastifyInstance = fastify().withTypeProvider<ZodTypeProvider>(); // { logger: true }
 
@@ -23,10 +15,8 @@ app.register(fastifyCors, {
   allowedHeaders: ['Content-Type'],
 });
 app.register(fastifyFormbody);
-app.register(fastifyJwt, {
-  secret: Bun.env.JWT_SECRET,
-});
-app.register(dbPlugin)
+app.register(fastifyPlugin(dbPlugin));
+app.register(fastifyPlugin(jwtPlugin));
 
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);

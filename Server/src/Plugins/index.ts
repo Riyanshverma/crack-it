@@ -1,2 +1,3 @@
-import dbPlugin from "./db.plugin";
-export { dbPlugin }
+import { dbPlugin, jwtPlugin } from './plugin';
+
+export { dbPlugin, jwtPlugin };
