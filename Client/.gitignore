@@ -1,0 +1,47 @@
+# Node modules and build output
+node_modules/
+dist/
+build/
+.next/
+out/
+.vite/
+.cache/
+.temp/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor directories and files
+.vscode/
+.idea/
+*.suo
+*.sw?
+
+# Environment files
+.env
+.env.*
+
+# Test coverage
+coverage/
+.nyc_output/
+*.lcov
+
+# Misc
+*.tgz
+*.gz
+*.zip
+*.bak
+*.tmp
+*.orig
+
+# npm/yarn/pnpm lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
