@@ -4,16 +4,10 @@ interface Database {
   db: PostgresDb;
 }
 
-interface CreateUserParams extends Database {
+interface createUserParamsType extends Database {
   full_name: string;
   email: string;
   password_hash: string;
 }
 
-interface CreateUserResult {
-  id: number;
-  full_name: string;
-  email: string;
-}
-
-export type { CreateUserParams, CreateUserResult }
+export type { createUserParamsType }
