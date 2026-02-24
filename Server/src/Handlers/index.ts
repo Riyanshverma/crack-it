@@ -1,3 +1,3 @@
-import { authErrorHandler } from "./auth.handler";
+import { validationErrorHandler, authenticateCookieHandler } from "./auth.handler";
 
-export { authErrorHandler }
+export { validationErrorHandler, authenticateCookieHandler }

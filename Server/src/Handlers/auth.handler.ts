@@ -5,7 +5,7 @@ import {
   type FastifySchemaValidationError,
 } from 'fastify';
 
-const authErrorHandler = (
+const validationErrorHandler = (
   error: FastifyError,
   request: FastifyRequest,
   reply: FastifyReply
@@ -28,4 +28,20 @@ const authErrorHandler = (
   }
 };
 
-export { authErrorHandler };
+const authenticateCookieHandler = async (
+  request: FastifyRequest,
+  reply: FastifyReply
+) => {
+  try {
+    await request.jwtVerify();
+  } catch (error) {
+    return reply.status(401).send({
+      success: false,
+      statusCode: 401,
+      error: 'Unauthorized',
+      message: ['Invalid or missing authentication token'],
+    });
+  }
+};
+
+export { validationErrorHandler, authenticateCookieHandler };

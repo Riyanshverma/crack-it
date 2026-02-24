@@ -5,19 +5,19 @@ import {
 } from 'fastify';
 import { signUp, logIn, logOut } from '../Controllers';
 import { userLogInSchema, userSignUpSchema } from '../Validations';
-import { authErrorHandler } from '../Handlers';
+import { validationErrorHandler, authenticateCookieHandler } from '../Handlers';
 
 const authRoutes = async (
   fastify: FastifyInstance,
   options: FastifyPluginOptions
 ) => {
-  fastify.setErrorHandler<FastifyError>(authErrorHandler);
+  fastify.setErrorHandler<FastifyError>(validationErrorHandler);
 
   fastify.post('/sign-up', { schema: { body: userSignUpSchema } }, signUp);
 
   fastify.post('/log-in', { schema: { body: userLogInSchema } }, logIn);
-  
-  fastify.post('/log-out', logOut);
+
+  fastify.post('/log-out', { onRequest: authenticateCookieHandler }, logOut);
 };
 
 export default authRoutes;

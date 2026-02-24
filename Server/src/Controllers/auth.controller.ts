@@ -110,7 +110,10 @@ const logIn = async (
       email: response.email,
     });
 
-    return reply.setCookie('cookie', token).status(200).send({
+    return reply
+      .setCookie('cookie', token)
+      .status(200)
+      .send({
         success: true,
         statusCode: 200,
         message: 'Logged in successfully',
@@ -159,6 +162,35 @@ const logIn = async (
 
 const logOut = async (request: FastifyRequest, reply: FastifyReply) => {
   try {
-  } catch (error) {}
+    reply.clearCookie('cookie', {
+      path: '/',
+      domain: Bun.env.COOKIE_DOMAIN,
+      httpOnly: true,
+      secure: true,
+      sameSite: 'strict',
+      signed: true,
+    });
+
+    return reply.status(200).send({
+      success: true,
+      statusCode: 200,
+      message: 'Logged out successfully',
+    });
+  } catch (error: unknown) {
+    if (!(error instanceof Error)) {
+      return reply.status(500).send({
+        success: false,
+        statusCode: 500,
+        error: 'Unknown Error',
+        messages: ['An unknown error occurred'],
+      });
+    }
+    return reply.status(500).send({
+      success: false,
+      statusCode: 500,
+      error: 'Internal Server Error',
+      messages: [error.message.replace(/\"/g, '')],
+    });
+  }
 };
 export { signUp, logIn, logOut };
