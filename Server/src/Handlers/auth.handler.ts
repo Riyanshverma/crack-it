@@ -12,6 +12,7 @@ const authErrorHandler = (
 ) => {
   if (error.validation) {
     return reply.status(400).send({
+      success: false,
       statusCode: error.statusCode,
       error: 'Bad Request',
       message: (error.validation as FastifySchemaValidationError[]).map(
