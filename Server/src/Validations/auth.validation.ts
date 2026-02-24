@@ -9,6 +9,10 @@ const password = z
     /^(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).*$/,
     'Password must contain at least an uppercase letter, a number, and a special character'
   );
+const id = z.string().uuid('Invalid UUID format');
+const full_name = z.string().min(3, 'Full name must be at least 3 characters long');
+
+
 
 const userSignUpSchema = z.strictObject({
   first_name: z
@@ -28,16 +32,14 @@ const userSignUpSchema = z.strictObject({
 });
 export type userSignUpType = z.infer<typeof userSignUpSchema>;
 
+
+
 const createUserResultSchema = z.strictObject({
-  id: z.string().uuid(),
-  full_name: z.string().min(3, 'Full name is required'),
+  id: id,
+  full_name: full_name,
   email: email,
 });
 export type createUserResultType = z.infer<typeof createUserResultSchema>;
-
-
-
-
 
 
 
@@ -47,4 +49,16 @@ const userLogInSchema = z.strictObject({
 });
 export type userLogInType = z.infer<typeof userLogInSchema>;
 
-export { userSignUpSchema, userLogInSchema, createUserResultSchema };
+
+
+const chechkIdentityResultSchema = z.strictObject({
+  id: id,
+  full_name: full_name,
+  email: email,
+  password_hash: z.string().min(1, 'Password hash is required'),
+});
+export type checkIdentityResultType = z.infer<typeof chechkIdentityResultSchema>;
+
+
+
+export { userSignUpSchema, userLogInSchema, createUserResultSchema, chechkIdentityResultSchema };

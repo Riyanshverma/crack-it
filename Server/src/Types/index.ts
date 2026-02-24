@@ -1,3 +1,3 @@
-import type { createUserParamsType } from "./auth.types";
+import type { createUserParamsType, checkIdentityParamsType } from "./auth.types";
 
-export type { createUserParamsType }
+export type { createUserParamsType, checkIdentityParamsType }

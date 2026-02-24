@@ -1,3 +1,3 @@
-import { createUser } from "./auth.service";
+import { createUser, checkIdentity } from "./auth.service";
 
-export { createUser }
+export { createUser, checkIdentity }

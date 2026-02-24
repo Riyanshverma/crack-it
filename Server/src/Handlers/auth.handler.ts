@@ -21,7 +21,7 @@ const authErrorHandler = (
             instancePath.length > 1
               ? instancePath.substring(1)
               : params.keys.join(', '),
-          message,
+          message: message?.replace(/\"/g, ''),
         })
       ),
     });

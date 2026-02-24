@@ -16,6 +16,7 @@ const authRoutes = async (
   fastify.post('/sign-up', { schema: { body: userSignUpSchema } }, signUp);
 
   fastify.post('/log-in', { schema: { body: userLogInSchema } }, logIn);
+  
   fastify.post('/log-out', logOut);
 };
 

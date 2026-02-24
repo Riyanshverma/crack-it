@@ -1,3 +1,3 @@
-import { userSignUpSchema, type userSignUpType, userLogInSchema, type userLogInType, createUserResultSchema, type createUserResultType } from "./auth.validation";
+import { userSignUpSchema, type userSignUpType, userLogInSchema, type userLogInType, createUserResultSchema, type createUserResultType, chechkIdentityResultSchema, type checkIdentityResultType } from "./auth.validation";
 
-export { userSignUpSchema, type userSignUpType, userLogInSchema, type userLogInType, createUserResultSchema, type createUserResultType }
+export { userSignUpSchema, type userSignUpType, userLogInSchema, type userLogInType, createUserResultSchema, type createUserResultType, chechkIdentityResultSchema, type checkIdentityResultType }
