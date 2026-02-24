@@ -10,5 +10,7 @@ declare module 'bun' {
     DB_NAME: string;
     DB_PORT: number;
     DB_CONNECTION_URL: string;
+    COOKIE_SECRET: string;
+    COOKIE_DOMAIN: string;
   }
 }

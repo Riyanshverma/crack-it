@@ -3,7 +3,7 @@ import {
   type FastifyInstance,
   type FastifyPluginOptions,
 } from 'fastify';
-import { signUp, logIn } from '../Controllers';
+import { signUp, logIn, logOut } from '../Controllers';
 import { userLogInSchema, userSignUpSchema } from '../Validations';
 import { authErrorHandler } from '../Handlers';
 
@@ -26,6 +26,7 @@ const authRoutes = async (
   );
 
   fastify.post('/log-in', { schema: { body: userLogInSchema } }, logIn);
+  fastify.post('/log-out', logOut);
 };
 
 export default authRoutes;

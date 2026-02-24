@@ -1,3 +1,3 @@
-import { signUp, logIn } from "./auth.controller";
+import { signUp, logIn, logOut } from "./auth.controller";
 
-export { signUp, logIn }
+export { signUp, logIn, logOut }

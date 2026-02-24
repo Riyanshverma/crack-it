@@ -23,11 +23,15 @@ const signUp = async (
       id: result.id,
       email: result.email,
     });
-    
 
-    // TODO: Send Cookie with JWT
-
-    // TODO: Send proper responsex
+    return reply
+      .setCookie('cookie', token)
+      .status(201)
+      .send({
+        statusCode: 201,
+        message: 'User created successfully',
+        user: result
+      });
   } catch (error: unknown) {
     if (error instanceof Error) {
       return reply.status(500).send({
@@ -53,4 +57,13 @@ const logIn = async (
     console.log(request.body);
   } catch (error) {}
 };
-export { signUp, logIn };
+
+
+const logOut = async (request: FastifyRequest, reply: FastifyReply) => {
+  try {
+
+  } catch (error) {
+
+  }
+}
+export { signUp, logIn, logOut };

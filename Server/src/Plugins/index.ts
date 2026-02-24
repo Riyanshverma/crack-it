@@ -1,3 +1,3 @@
-import { dbPlugin, jwtPlugin } from './plugin';
+import { dbPlugin, jwtPlugin, corsPlugin, cookiePlugin } from './plugin';
 
-export { dbPlugin, jwtPlugin };
+export { dbPlugin, jwtPlugin, corsPlugin, cookiePlugin };
