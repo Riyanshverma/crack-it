@@ -16,6 +16,9 @@ const dbPlugin: FastifyPluginAsync = async (
   await fastify.register(fastifyPostgres, {
     connectionString: Bun.env.DB_CONNECTION_URL,
   });
+  fastify.addHook('onClose', async (instance: FastifyInstance): Promise<void> => {
+    console.info('DB connection closed');
+  });
 };
 
 const jwtPlugin: FastifyPluginAsync = async (

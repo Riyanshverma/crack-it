@@ -11,10 +11,16 @@ async function startServer() {
   }
 }
 
+let shuttingDown = false;
+
 process.on('SIGINT', async () => {
   try {
+    if (shuttingDown) return
+    shuttingDown = true;
+
+    console.info('\nClosing server gracefully...');
     await app.close();
-    console.info('\nServer closed gracefully');
+    console.info('Server closed gracefully');
     process.exit(0);
   } catch (error) {
     console.error(`An error occurred while closing the server: ${error}`);
