@@ -6,6 +6,7 @@ import { authRoutes } from './Routes';
 import { dbPlugin, jwtPlugin, corsPlugin, cookiePlugin } from './Plugins';
 
 const app: FastifyInstance = fastify().withTypeProvider<ZodTypeProvider>(); // { logger: true }
+
 app.register(fastifyFormbody);
 app.register(fastifyPlugin(dbPlugin));
 app.register(fastifyPlugin(jwtPlugin));
